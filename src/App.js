@@ -1,64 +1,14 @@
+import CardWrapper from "./modules/cardWrapper";
+import Header from "./modules/header";
+import HourSection from "./modules/hourSection";
+
 function App() {
   //sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3
   return (
-    <div className="flex bg-[url('asset/images/bg-cloud.jpg')]">
-      <div className="w-2/4 flex justify-center items-center p-2 m-2 border-r-2 border-r-black">
-        <img src="images/sun.svg" alt="sun" className="h-20 w-20" />
-        <div className="text-3xl ml-4">
-          <span>57</span>
-          &deg;
-        </div>
-      </div>
-
-      <div className="p-8 w-2/4 grid grid-cols-3 grid-rows-2 gap-2">
-        <div className="text-white">
-          <div className="text-sm font-bold text-white uppercase">High</div>
-          <div>
-            <span>57</span>
-            &deg;
-          </div>
-        </div>
-
-        <div>
-          <div>High</div>
-          <div>
-            <span>57</span>
-            &deg;
-          </div>
-        </div>
-
-        <div>
-          <div>High</div>
-          <div>
-            <span>57</span>
-            &deg;
-          </div>
-        </div>
-
-        <div>
-          <div>High</div>
-          <div>
-            <span>57</span>
-            &deg;
-          </div>
-        </div>
-
-        <div>
-          <div>High</div>
-          <div>
-            <span>57</span>
-            &deg;
-          </div>
-        </div>
-
-        <div>
-          <div>High</div>
-          <div>
-            <span>57</span>
-            &deg;
-          </div>
-        </div>
-      </div>
+    <div>
+      <Header />
+      <CardWrapper />
+      <HourSection />
     </div>
   );
 }
