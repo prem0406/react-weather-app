@@ -1,15 +1,14 @@
 import React from "react";
 import HourRow from "./hourRow";
 
-const HourSection = () => {
+const HourSection = ({ hourly = [] }) => {
   return (
-    <div mt-4>
+    <div className="mt-4">
       <table className="w-full text-center border-spacing-0">
         <tbody>
-          <HourRow />
-          <HourRow />
-          <HourRow />
-          <HourRow />
+          {hourly.map((hour) => (
+            <HourRow hour={hour} />
+          ))}
         </tbody>
       </table>
     </div>

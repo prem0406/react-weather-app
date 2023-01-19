@@ -1,16 +1,12 @@
 import React from "react";
 import Card from "./card";
 
-const CardWrapper = () => {
+const CardWrapper = ({ daily = [] }) => {
   return (
     <div className="p-4 grid grid-flow-col auto-cols-auto gap-2 justify-center">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {daily.map((day) => (
+        <Card day={day} />
+      ))}
     </div>
   );
 };
