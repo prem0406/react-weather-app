@@ -17,7 +17,10 @@ function addMapping(values, icon) {
   });
 }
 
-export function getIconUrl(iconCode) {
+export function getIconUrl(iconCode, isBG = false) {
+  if (isBG) {
+    return `asset/images/${ICON_MAP.get(iconCode)}.jpg`;
+  }
   return `images/${ICON_MAP.get(iconCode)}.svg`;
 }
 
@@ -28,3 +31,7 @@ export const DAY_FORMATTER = new Intl.DateTimeFormat(undefined, {
 export const HOUR_FORMATTER = new Intl.DateTimeFormat(undefined, {
   hour: "numeric",
 });
+
+export function convertFahrenheitToCelsius(temperature) {
+  return (temperature - 32) * (5 / 9);
+}
