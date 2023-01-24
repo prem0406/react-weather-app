@@ -19,7 +19,7 @@ function addMapping(values, icon) {
 
 export function getIconUrl(iconCode, isBG = false) {
   if (isBG) {
-    return `asset/images/${ICON_MAP.get(iconCode)}.jpg`;
+    return `images/${ICON_MAP.get(iconCode)}.jpg`;
   }
   return `images/${ICON_MAP.get(iconCode)}.svg`;
 }

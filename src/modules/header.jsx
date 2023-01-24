@@ -4,10 +4,8 @@ import { getIconUrl } from "../Utility/utility";
 const Header = ({ current }) => {
   return (
     <div
-      className={`flex bg-[url('${getIconUrl(
-        current?.iconCode,
-        true
-      )}')] bg-cover`}
+      style={{ backgroundImage: `url(${getIconUrl(current?.iconCode, true)})` }}
+      className={`flex bg-cover`}
     >
       <div className="w-2/4 flex justify-center items-center p-2 m-2 border-r-2 border-r-black">
         <img
