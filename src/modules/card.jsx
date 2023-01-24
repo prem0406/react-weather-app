@@ -1,7 +1,8 @@
 import React from "react";
+import { CELSIUS } from "../Utility/constants";
 import { DAY_FORMATTER, getIconUrl } from "../Utility/utility";
 
-const Card = ({ day }) => {
+const Card = ({ day, tempUnit }) => {
   return (
     <div className="px-4 py-1 border-solid border border-sky-500 rounded flex flex-col items-center">
       <img src={getIconUrl(day?.iconCode)} alt="sun" className="h-10 w-10" />
@@ -10,7 +11,7 @@ const Card = ({ day }) => {
       </div>
       <div className="mt-1">
         <span>{day?.maxTemp || 57}</span>
-        &deg;
+        &deg;{tempUnit === CELSIUS ? "C" : "F"}
       </div>
     </div>
   );

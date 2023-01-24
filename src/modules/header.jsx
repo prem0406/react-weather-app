@@ -1,7 +1,8 @@
 import React from "react";
+import { CELSIUS, INCH, KMH } from "../Utility/constants";
 import { getIconUrl } from "../Utility/utility";
 
-const Header = ({ current }) => {
+const Header = ({ current, tempUnit, speedUnit, precipUnit }) => {
   return (
     <div
       style={{ backgroundImage: `url(${getIconUrl(current?.iconCode, true)})` }}
@@ -14,8 +15,8 @@ const Header = ({ current }) => {
           className="h-20 w-20"
         />
         <div className="text-3xl ml-4 text-white">
-          <span>{current?.currentTemp || 57}</span>
-          &deg;
+          <span>{current?.currentTemp || 57} </span>
+          &deg;{tempUnit === CELSIUS ? "C" : "F"}
         </div>
       </div>
 
@@ -24,7 +25,7 @@ const Header = ({ current }) => {
           <div className="text-sm font-bold uppercase">High</div>
           <div>
             <span>{current?.highTemp || 57}</span>
-            &deg;
+            &deg;{tempUnit === CELSIUS ? "C" : "F"}
           </div>
         </div>
 
@@ -32,7 +33,7 @@ const Header = ({ current }) => {
           <div className="text-sm font-bold uppercase">FL High</div>
           <div>
             <span>{current?.highFeelsLike || 57}</span>
-            &deg;
+            &deg;{tempUnit === CELSIUS ? "C" : "F"}
           </div>
         </div>
 
@@ -40,7 +41,9 @@ const Header = ({ current }) => {
           <div className="text-sm font-bold uppercase">Wind</div>
           <div>
             <span>{current?.windSpeed || 57}</span>
-            <span className="text-xs font-light">mph</span>
+            <span className="text-xs font-light">
+              {speedUnit === KMH ? "km/h" : "mph"}
+            </span>
           </div>
         </div>
 
@@ -48,7 +51,7 @@ const Header = ({ current }) => {
           <div className="text-sm font-bold uppercase">Low</div>
           <div>
             <span>{current?.lowTemp || 57}</span>
-            &deg;
+            &deg;{tempUnit === CELSIUS ? "C" : "F"}
           </div>
         </div>
 
@@ -56,7 +59,7 @@ const Header = ({ current }) => {
           <div className="text-sm font-bold uppercase">FL Low</div>
           <div>
             <span>{current?.lowFeelsLike || 57}</span>
-            &deg;
+            &deg;{tempUnit === CELSIUS ? "C" : "F"}
           </div>
         </div>
 
@@ -64,7 +67,9 @@ const Header = ({ current }) => {
           <div className="text-sm font-bold uppercase">Precip</div>
           <div>
             <span>{current?.precip || 57}</span>
-            <span className="text-xs font-light">in</span>
+            <span className="text-xs font-light">
+              {precipUnit === INCH ? "in" : "mm"}
+            </span>
           </div>
         </div>
       </div>

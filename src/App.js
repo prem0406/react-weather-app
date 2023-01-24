@@ -3,13 +3,14 @@ import CardWrapper from "./modules/cardWrapper";
 import Header from "./modules/header";
 import HourSection from "./modules/hourSection";
 import { getWeather } from "./services/service";
+import { CELSIUS, INCH, KMH } from "./Utility/constants";
 
 function App() {
   //sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3
   const [data, setData] = useState({});
-  const [tempUnit, setTempUnit] = useState("celsius");
-  const [speedUnit, setSpeedUnit] = useState("kmh");
-  const [precipUnit, setPrecipUnit] = useState("inch");
+  const [tempUnit, setTempUnit] = useState(CELSIUS);
+  const [speedUnit, setSpeedUnit] = useState(KMH);
+  const [precipUnit, setPrecipUnit] = useState(INCH);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
@@ -98,9 +99,19 @@ function App() {
           </select>
         </div>
       </div>
-      <Header current={data?.current} />
-      <CardWrapper daily={data?.daily} />
-      <HourSection hourly={data?.hourly} />
+      <Header
+        current={data?.current}
+        tempUnit={tempUnit}
+        speedUnit={speedUnit}
+        precipUnit={precipUnit}
+      />
+      <CardWrapper daily={data?.daily} tempUnit={tempUnit} />
+      <HourSection
+        hourly={data?.hourly}
+        tempUnit={tempUnit}
+        speedUnit={speedUnit}
+        precipUnit={precipUnit}
+      />
     </div>
   );
 }

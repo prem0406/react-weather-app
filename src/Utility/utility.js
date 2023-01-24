@@ -30,6 +30,7 @@ export const DAY_FORMATTER = new Intl.DateTimeFormat(undefined, {
 
 export const HOUR_FORMATTER = new Intl.DateTimeFormat(undefined, {
   hour: "numeric",
+  hour12: true,
 });
 
 export function convertFahrenheitToCelsius(temperature) {
