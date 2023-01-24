@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import CardWrapper from "./modules/cardWrapper";
 import Header from "./modules/header";
 import HourSection from "./modules/hourSection";
+import UnitSection from "./modules/unitSection";
 import { getWeather } from "./services/service";
 import { CELSIUS, INCH, KMH } from "./Utility/constants";
 
 function App() {
-  //sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3
-  // const [data, setData] = useState({});
   const [tempUnit, setTempUnit] = useState(CELSIUS);
   const [speedUnit, setSpeedUnit] = useState(KMH);
   const [precipUnit, setPrecipUnit] = useState(INCH);
@@ -75,50 +74,7 @@ function App() {
 
   return (
     <div>
-      <div className="flex gap-2 items-center ml-4">
-        <div>
-          <label htmlFor="temp-unit" className="mr-1 text-xs text-slate-800">
-            Temp Unit
-          </label>
-          <select
-            name="temp-unit"
-            id="temp-unit"
-            onChange={onUnitChange}
-            className="bg-transparent font-bold border border-cyan-100 rounded"
-          >
-            <option value="celsius"> &deg;C</option>
-            <option value="fahrenheit"> &deg;F</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="speed-unit" className="mr-1 text-xs text-slate-800">
-            Wind Unit
-          </label>
-          <select
-            name="speed-unit"
-            id="speed-unit"
-            onChange={onUnitChange}
-            className="bg-transparent font-bold border border-cyan-100 rounded"
-          >
-            <option value="kmh">km/h</option>
-            <option value="mph">mph</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="precip-unit" className="mr-1 text-xs text-slate-800">
-            Precip Unit
-          </label>
-          <select
-            name="precip-unit"
-            id="precip-unit"
-            onChange={onUnitChange}
-            className="bg-transparent font-bold border border-cyan-100 rounded"
-          >
-            <option value="inch">inch</option>
-            <option value="mm">mm</option>
-          </select>
-        </div>
-      </div>
+      <UnitSection onUnitChange={onUnitChange} />
       <Header
         current={data?.current}
         tempUnit={tempUnit}
