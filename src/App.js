@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import CardWrapper from "./modules/cardWrapper";
 import Header from "./modules/header";
@@ -7,29 +8,33 @@ import { CELSIUS, INCH, KMH } from "./Utility/constants";
 
 function App() {
   //sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
   const [tempUnit, setTempUnit] = useState(CELSIUS);
   const [speedUnit, setSpeedUnit] = useState(KMH);
   const [precipUnit, setPrecipUnit] = useState(INCH);
+  const [coord, setCoord] = useState(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
   }, [tempUnit, speedUnit, precipUnit]);
 
+  const { isLoading, error, data } = useQuery({
+    enabled: coord !== null,
+    queryKey: ["getWeather"],
+    queryFn: () =>
+      getWeather(
+        coord?.latitude,
+        coord?.longitude,
+        Intl.DateTimeFormat().resolvedOptions().timeZone,
+        tempUnit,
+        speedUnit,
+        precipUnit
+      ),
+  });
+
   function positionSuccess({ coords }) {
-    getWeather(
-      coords.latitude,
-      coords.longitude,
-      Intl.DateTimeFormat().resolvedOptions().timeZone,
-      tempUnit,
-      speedUnit,
-      precipUnit
-    )
-      .then((res) => setData({ ...res }))
-      .catch((e) => {
-        console.error(e);
-        alert("Error getting weather.");
-      });
+    const { latitude, longitude } = coords;
+    setCoord({ latitude, longitude });
   }
 
   function positionError() {
@@ -52,6 +57,21 @@ function App() {
 
     setPrecipUnit(value);
   };
+
+  if (isLoading)
+    return (
+      <div className="flex flex-col justify-center items-center mt-20 text-2xl text-green-500">
+        Please wait...
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex flex-col justify-center items-center mt-20">
+        <div className="text-lg text-red-500">Sorry! This website is down.</div>
+        <div className="mt-10">{error?.message}</div>
+      </div>
+    );
 
   return (
     <div>
