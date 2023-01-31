@@ -12,7 +12,7 @@ const Header = ({ current, tempUnit, speedUnit, precipUnit }) => {
         <img
           src={getIconUrl(current?.iconCode)}
           alt="sun"
-          className="h-20 w-20"
+          className=" h-12 w-12 sm:h-20 sm:w-20"
         />
         <div className="text-2xl sm:text-3xl ml-4 text-white text-shadow">
           <span>{current?.currentTemp || 57} </span>
