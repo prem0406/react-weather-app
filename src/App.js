@@ -19,7 +19,7 @@ function App() {
 
   const { isLoading, error, data } = useQuery({
     enabled: coord !== null,
-    queryKey: ["getWeather"],
+    queryKey: ["getWeather", tempUnit, speedUnit, precipUnit],
     queryFn: () =>
       getWeather(
         coord?.latitude,
@@ -57,12 +57,12 @@ function App() {
     setPrecipUnit(value);
   };
 
-  if (isLoading)
-    return (
-      <div className="flex flex-col justify-center items-center mt-20 text-2xl text-green-500">
-        Please wait...
-      </div>
-    );
+  // if (isLoading)
+  //   return (
+  //     <div className="flex flex-col justify-center items-center mt-20 text-2xl text-green-500">
+  //       Please wait...
+  //     </div>
+  //   );
 
   if (error)
     return (
@@ -73,7 +73,7 @@ function App() {
     );
 
   return (
-    <div>
+    <div className={isLoading ? "blur-sm" : ""}>
       <UnitSection onUnitChange={onUnitChange} />
       <Header
         current={data?.current}

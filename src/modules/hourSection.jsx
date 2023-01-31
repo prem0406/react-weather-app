@@ -8,6 +8,7 @@ const HourSection = ({ hourly = [], tempUnit, speedUnit, precipUnit }) => {
         <tbody className="[&>*:nth-child(even)]:bg-blue-500">
           {hourly.map((hour) => (
             <HourRow
+              key={hour?.timestamp}
               hour={hour}
               tempUnit={tempUnit}
               speedUnit={speedUnit}

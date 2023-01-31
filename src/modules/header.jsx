@@ -14,31 +14,31 @@ const Header = ({ current, tempUnit, speedUnit, precipUnit }) => {
           alt="sun"
           className="h-20 w-20"
         />
-        <div className="text-3xl ml-4 text-white">
+        <div className="text-2xl sm:text-3xl ml-4 text-white text-shadow">
           <span>{current?.currentTemp || 57} </span>
           &deg;{tempUnit === CELSIUS ? "C" : "F"}
         </div>
       </div>
 
-      <div className="p-8 w-2/4 grid grid-cols-3 grid-rows-2 gap-2">
-        <div className="text-white">
-          <div className="text-sm font-bold uppercase">High</div>
+      <div className="p-4 sm:p-8 w-2/4 grid grid-cols-[repeat(auto-fit,minmax(50px,1fr))] gap-2 text-shadow">
+        <div className="text-white text-xs sm:text-sm">
+          <div className="font-bold uppercase">High</div>
           <div>
             <span>{current?.highTemp || 57}</span>
             &deg;{tempUnit === CELSIUS ? "C" : "F"}
           </div>
         </div>
 
-        <div className="text-white">
-          <div className="text-sm font-bold uppercase">FL High</div>
+        <div className="text-white text-xs sm:text-sm">
+          <div className="font-bold uppercase">FL High</div>
           <div>
             <span>{current?.highFeelsLike || 57}</span>
             &deg;{tempUnit === CELSIUS ? "C" : "F"}
           </div>
         </div>
 
-        <div className="text-white">
-          <div className="text-sm font-bold uppercase">Wind</div>
+        <div className="text-white text-xs sm:text-sm">
+          <div className="font-bold uppercase">Wind</div>
           <div>
             <span>{current?.windSpeed || 57}</span>
             <span className="text-xs font-light">
@@ -47,24 +47,24 @@ const Header = ({ current, tempUnit, speedUnit, precipUnit }) => {
           </div>
         </div>
 
-        <div className="text-white">
-          <div className="text-sm font-bold uppercase">Low</div>
+        <div className="text-white text-xs sm:text-sm">
+          <div className="font-bold uppercase">Low</div>
           <div>
             <span>{current?.lowTemp || 57}</span>
             &deg;{tempUnit === CELSIUS ? "C" : "F"}
           </div>
         </div>
 
-        <div className="text-white">
-          <div className="text-sm font-bold uppercase">FL Low</div>
+        <div className="text-white text-xs sm:text-sm">
+          <div className="font-bold uppercase">FL Low</div>
           <div>
             <span>{current?.lowFeelsLike || 57}</span>
             &deg;{tempUnit === CELSIUS ? "C" : "F"}
           </div>
         </div>
 
-        <div className="text-white">
-          <div className="text-sm font-bold uppercase">Precip</div>
+        <div className="text-white text-xs sm:text-sm">
+          <div className="font-bold uppercase">Precip</div>
           <div>
             <span>{current?.precip || 57}</span>
             <span className="text-xs font-light">
