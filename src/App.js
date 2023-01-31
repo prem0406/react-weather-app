@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useGeolocation from "./hooks/useGeolocation";
 import CardWrapper from "./modules/cardWrapper";
 import Header from "./modules/header";
 import HourSection from "./modules/hourSection";
@@ -11,14 +12,11 @@ function App() {
   const [tempUnit, setTempUnit] = useState(CELSIUS);
   const [speedUnit, setSpeedUnit] = useState(KMH);
   const [precipUnit, setPrecipUnit] = useState(INCH);
-  const [coord, setCoord] = useState(null);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
-  }, [tempUnit, speedUnit, precipUnit]);
+  const { data: coord, loading } = useGeolocation();
 
   const { isLoading, error, data } = useQuery({
-    enabled: coord !== null,
+    enabled: !loading,
     queryKey: ["getWeather", tempUnit, speedUnit, precipUnit],
     queryFn: () =>
       getWeather(
@@ -30,17 +28,6 @@ function App() {
         precipUnit
       ),
   });
-
-  function positionSuccess({ coords }) {
-    const { latitude, longitude } = coords;
-    setCoord({ latitude, longitude });
-  }
-
-  function positionError() {
-    alert(
-      "There was an error getting your location. Please allow us to use your location and refresh the page."
-    );
-  }
 
   const onUnitChange = (e) => {
     const { name, value } = e.target;
