@@ -44,13 +44,6 @@ function App() {
     setPrecipUnit(value);
   };
 
-  // if (isLoading)
-  //   return (
-  //     <div className="flex flex-col justify-center items-center mt-20 text-2xl text-green-500">
-  //       Please wait...
-  //     </div>
-  //   );
-
   if (error)
     return (
       <div className="flex flex-col justify-center items-center mt-20">
