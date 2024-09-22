@@ -5,3 +5,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## API USED
 
 https://api.open-meteo.com/v1/forecast
+
+## SITE URL
+https://react-weather-we.netlify.app/
